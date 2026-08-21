@@ -20,7 +20,7 @@ The software was developed as part of a master's thesis project involving time-c
 The basic software structure is:
 
 ```text
-SPC-130 Hardware
+SPC-130 EMN Hardware
        ↕
 Becker & Hickl Software Interface
        ↕
@@ -47,26 +47,14 @@ tcspc/
 
 ### Main files
 
-**`main.py`**
-Main program used for testing and controlling the TCSPC acquisition.
-
-**`pybhspc.py`**
-Python interface containing functions used to communicate with the Becker & Hickl TCSPC software interface.
-
-**`spc.py`**
-Contains SPC-130 initialization, parameter configuration, and measurement-related functions.
-
 **`spc_server.py`**
-Provides network-based access to the TCSPC control functions.
+Implements the initialization, acquire parameters and measure the data.
 
 **`tcspc_tcp_server.py`**
 Implements TCP communication for remote measurement control and data transfer.
 
 **`spcm.ini`**
 Configuration file containing parameters required for initialization of the SPC-130 module.
-
-**`test.py` and `test2.py`**
-Test scripts used during development and debugging of the TCSPC interface.
 
 ## Requirements
 
@@ -78,13 +66,14 @@ The software requires:
 * Becker & Hickl device drivers and software libraries
 * Required Python packages for the SPC interface and network communication
 
-Install the required Python dependencies using:
+## Start the server:
 
-```bash
-pip install -r requirements.txt
-```
+In order to use this software you need to start the server from the windows side so that it establishes the connection with the tango workstation.
 
-if a `requirements.txt` file is provided.
+*  uvicorn spc_server:app --host 0.0.0.0 --port "your port number" --timeout-keep-alive "required alive time"
+
+Here you can just have your very own port number for the windows pc which can be most commonly 9000 and then the alive time required to keep the measurement running. Because some tango servers has a time frame limit beyond that the connection will be interupted.
+
 
 ## Basic Usage
 
@@ -105,13 +94,13 @@ Make sure the Becker & Hickl drivers and required software libraries are install
 The acquisition can then be started using the appropriate Python control script, for example:
 
 ```bash
-python main.py
+spc_server.py
 ```
 
 or the network server can be started using:
 
 ```bash
-python spc_server.py
+tcspc_tcp_server.py
 ```
 
 depending on the required configuration.
@@ -121,7 +110,7 @@ depending on the required configuration.
 A typical TCSPC measurement follows the sequence:
 
 ```text
-Initialize SPC-130
+Initialize SPC-130 EMN
         ↓
 Load acquisition parameters
         ↓
