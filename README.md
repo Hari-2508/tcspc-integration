@@ -135,6 +135,9 @@ In the implemented configuration, the Windows acquisition computer communicates 
 
 This architecture allows the SPC-130 module to be incorporated into a larger automated experimental control environment.
 
+## Important Info:
+The tango side control code used to initialize the hardware, set parameters, acquire data, display histogram and save data are made specifically for our experiemntal setup. If required can be obtained upon request.
+
 ## Notes
 
 This repository contains research software developed for laboratory use. Hardware-specific configuration may need to be modified depending on:
