@@ -1,0 +1,37 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# PyCharm
+.idea/
+
+# VS Code
+.vscode/
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Data files
+*.npy
+*.npz
+*.h5
+*.hdf5
+
+# DLL files
+*.dll
+
+# Logs
+*.log
+
+# Compiled files
+*.exe
+
+# Measurement/output data
+histogram_data.txt
